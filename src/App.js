@@ -1,30 +1,43 @@
 import React, { Component } from 'react'
-import { withRouter, Switch, Route } from 'react-router-dom'
-import { Nav, NavItem, NavLink, Button } from 'reactstrap'
-import './App.css'
+import { withRouter, Switch, Route, Link } from 'react-router-dom'
 
-// COMPONENTS
-import Home from './Components/Home'
-import About from './Components/About'
-import Settings from './Components/Settings'
+const Page = ({ title }) => (
+  <div className="App">
+    <div className="App-header">
+      <h2>{title}</h2>
+    </div>
+    <p className="App-intro">
+      This is the {title} page.
+      </p>
+    <p>
+      <Link to="/">Home</Link>
+    </p>
+    <p>
+      <Link to="/about">About</Link>
+    </p>
+    <p>
+      <Link to="/settings">Settings</Link>
+    </p>
+  </div>
+);
+
+const Home = (props) => (
+  <Page title="Home" />
+);
+
+const About = (props) => (
+  <Page title="About" />
+);
+
+const Settings = (props) => (
+  <Page title="Settings" />
+);
 
 class App extends Component {
   render() {
     console.log(this.props)
     return (
       <div>
-        {/* BOOSTRAP NAV */}
-        <Nav tabs>
-          <NavItem>
-            <NavLink href="/">Home</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="/about">About</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="/settings">Settings</NavLink>
-          </NavItem>
-        </Nav>
         {/* ROUTES */}
         <Switch>
           <Route exact path='/' component={Home}/>
